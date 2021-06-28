@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block body %}
+    <main class="main-content">
+        {% include "_preloader.html.twig" %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mx-auto my-4">
+                    <div class="card card-signup">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h3 class="card-title">Récupération de mot de passe</h3>
+                                <p class="slogan">Veuillez entrer votre adresse email</p>
+
+                            </div>
+                            {% for flashError in app.flashes('reset_password_error') %}
+                                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                            {% endfor %}
+
+                            {{ form_start(requestForm, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                                <div class="md-form">
+                                    {{ form_widget(requestForm.email) }}
+                                    {{ form_errors(requestForm.email) }}
+                                </div>
+
+                                <div class="card-foter text-right mt-4">
+                                    <input type="submit" value="Valider">
+                                    <!-- <button type="button" class="btn" style="width: 100%;">Continuer</button> -->
+                                </div>
+                                {{ form_end(requestForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End preloader Start -->
+    </main>
+{% endblock %}

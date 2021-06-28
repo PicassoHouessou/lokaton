@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mx-auto my-4">
+                <div class="card card-signup">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h3 class="card-title">Changement de mot de passe</h3>
+                            <p class="slogan">Veuillez entrer votre nouveau mot de passe</p>
+                        </div>
+                        {{ form_start(resetForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="md-form">
+                            {{ form_widget(resetForm.plainPassword) }}
+                            {{ form_errors(resetForm.plainPassword) }}
+                        </div>
+
+                        <div class="md-form">
+                            {{ form_widget(resetForm.confirmPlainPassword) }}
+                            {{ form_errors(resetForm.confirmPlainPassword) }}
+                        </div>
+
+                        <div class="card-foter text-right mt-4">
+                            <input type="submit" name="" value="Valider et continuer">
+                            <!-- <button type="button" class="btn" style="width: 100%;">Continuer</button> -->
+                        </div>
+
+                        {{ form_end(resetForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

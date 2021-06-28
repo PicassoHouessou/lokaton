@@ -1,0 +1,282 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <!-- Hero Start-->
+    <div class="hero-area3 hero-overly2 d-flex align-items-center ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-9">
+                    <div class="hero-cap text-center pt-50 pb-20">
+                        <span class="d-none">Explore the city</span>
+                        <h2>{{"Louez, vendez ou achetez votre bien immobilier"|trans}}</h2>
+                    </div>
+                    <!--Hero form -->
+                    <form action="#" class="search-box search-box2">
+                        <div class="input-form">
+                            <input type="text" placeholder="Entrez une ville ou un quartier">
+                        </div>
+                        <div class="select-form">
+                            <div class="select-itms">
+                                <select name="select" id="select1">
+                                    <option value="">{{"Type de bien recherché"|trans}}</option>
+                                    <option value="">{{"Appartement à vendre"|trans}}</option>
+                                    <option value="">{{"Appartement à Louer"|trans}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Search box -->
+                        <div class="search-form">
+                            <a href="#">Lokater</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Hero End -->
+
+
+    <div class="categories-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle text-center mb-10">
+                        <span>Votre appartement à porté de main</span>
+                        <h2>Trouvez la location idéale</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- listing Area Start -->
+    <div class="listing-area pb-120">
+        <div class="container">
+            <div class="row">
+                <!-- Left content -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="small-section-tittle2 mb-45">
+                                <h4>Recherche avancée</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Job Category Listing start -->
+                    <div class="category-listing mb-50">
+                        <!-- single one -->
+                        <div class="single-listing">
+                            <!-- input -->
+                            <div class="input-form">
+                                <input type="text" placeholder="Entrez une ville ou un quartier ?">
+                            </div>
+                            <!-- Select job items start -->
+                            <div class="select-job-items1">
+                                <select name="select1">
+                                    <option value="">Location</option>
+                                    <option value="">Entré couché</option>
+                                    <option value="">Chambre Salon</option>
+                                    <option value="">Boutique</option>
+                                </select>
+                            </div>
+                            <!--  Select job items End-->
+                            <!-- Select job items start -->
+                            <div class="select-job-items2">
+                                <select name="select2">
+                                    <option value="">Nombre de chambre</option>
+                                    <option value="">1 Chambre</option>
+                                    <option value="">2 Chambres</option>
+                                    <option value="">3+ Chambres</option>
+                                </select>
+                            </div>
+                            <!--  Select job items End-->
+
+                            <!-- Select job items start -->
+                            <div class="select-job-items2">
+                                <select name="select2">
+                                    <option value="">Type de location</option>
+                                    <option value="">Sanitaire</option>
+                                    <option value="">Semi-sanitaire</option>
+                                    <option value="">Ordinaire</option>
+                                </select>
+                            </div>
+                            <!--  Select job items End-->
+                        </div>
+
+                        <div class="single-listing">
+                            <a href="#" class="btn list-btn mt-20">Lokater</a>
+                        </div>
+                    </div>
+                    <!-- Job Category Listing End -->
+                </div>
+                <!-- Right content -->
+                <div class="col-xl-8 col-lg-8 col-md-6">
+                    <!-- <div class="row">
+                        <div class="col-lg-12">
+                            <div class="count mb-35">
+                                <span>5432 Listings are available</span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- listing Details Stat-->
+                    <div class="listing-details-area">
+                        <div class="container">
+                            <div class="row">
+
+                                <!-- Start one lokaton card -->
+                                <div class="col-lg-6 ">
+                                    <div class="single-listing mb-30">
+                                        <div class="list-img">
+                                            <img src="assets/img/gallery/list1.png" alt="">
+                                            <!-- <span>Open</span> -->
+                                        </div>
+                                        <div class="list-caption">
+                                            <span>25.000 XOF</span>
+                                            <h3><a href="">Chambre Salon &bull; Sanitaire</a></h3>
+                                            <p>Cotonou, Zogbohouè / Bénin</p>
+                                            <div class="list-footer">
+                                                <ul>
+                                                    <li>+229 97 14 50 32</li>
+                                                    <li><a href="https://wa.me/+22997145032"><img src="/assets/img/icon/whsp_a.png" width="16px"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End one lokaton card -->
+
+                                <!-- Start one lokaton card -->
+                                <div class="col-lg-6 ">
+                                    <div class="single-listing mb-30">
+                                        <div class="list-img">
+                                            <img src="assets/img/gallery/list1.png" alt="">
+                                            <!-- <span>Open</span> -->
+                                        </div>
+                                        <div class="list-caption">
+                                            <span>25.000 XOF</span>
+                                            <h3><a href="">Chambre Salon &bull; Sanitaire</a></h3>
+                                            <p>Cotonou, Zogbohouè / Bénin</p>
+                                            <div class="list-footer">
+                                                <ul>
+                                                    <li>+229 97 14 50 32</li>
+                                                    <li><a href="https://wa.me/+22997145032"><img src="/assets/img/icon/whsp_a.png" width="16px"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End one lokaton card -->
+
+                                <!-- Start one lokaton card -->
+                                <div class="col-lg-6 ">
+                                    <div class="single-listing mb-30">
+                                        <div class="list-img">
+                                            <img src="assets/img/gallery/list1.png" alt="">
+                                            <!-- <span>Open</span> -->
+                                        </div>
+                                        <div class="list-caption">
+                                            <span>25.000 XOF</span>
+                                            <h3><a href="">Chambre Salon &bull; Sanitaire</a></h3>
+                                            <p>Cotonou, Zogbohouè / Bénin</p>
+                                            <div class="list-footer">
+                                                <ul>
+                                                    <li>+229 97 14 50 32</li>
+                                                    <li><a href="https://wa.me/+22997145032"><img src="/assets/img/icon/whsp_a.png" width="16px"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End one lokaton card -->
+
+                                <!-- Start one lokaton card -->
+                                <div class="col-lg-6 ">
+                                    <div class="single-listing mb-30">
+                                        <div class="list-img">
+                                            <img src="assets/img/gallery/list1.png" alt="">
+                                            <!-- <span>Open</span> -->
+                                        </div>
+                                        <div class="list-caption">
+                                            <span>25.000 XOF</span>
+                                            <h3><a href="">Chambre Salon &bull; Sanitaire</a></h3>
+                                            <p>Cotonou, Zogbohouè / Bénin</p>
+                                            <div class="list-footer">
+                                                <ul>
+                                                    <li>+229 97 14 50 32</li>
+                                                    <li><a href="https://wa.me/+22997145032"><img src="/assets/img/icon/whsp_a.png" width="16px"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End one lokaton card -->
+
+                                <!-- Start one lokaton card -->
+                                <div class="col-lg-6 ">
+                                    <div class="single-listing mb-30">
+                                        <div class="list-img">
+                                            <img src="assets/img/gallery/list1.png" alt="">
+                                            <!-- <span>Open</span> -->
+                                        </div>
+                                        <div class="list-caption">
+                                            <span>25.000 XOF</span>
+                                            <h3><a href="">Chambre Salon &bull; Sanitaire</a></h3>
+                                            <p>Cotonou, Zogbohouè / Bénin</p>
+                                            <div class="list-footer">
+                                                <ul>
+                                                    <li>+229 97 14 50 32</li>
+                                                    <li><a href="https://wa.me/+22997145032"><img src="/assets/img/icon/whsp_a.png" width="16px"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End one lokaton card -->
+
+                                <!-- Start one lokaton card -->
+                                <div class="col-lg-6 ">
+                                    <div class="single-listing mb-30">
+                                        <div class="list-img">
+                                            <img src="assets/img/gallery/list1.png" alt="">
+                                            <!-- <span>Open</span> -->
+                                        </div>
+                                        <div class="list-caption">
+                                            <span>25.000 XOF</span>
+                                            <h3><a href="">Chambre Salon &bull; Sanitaire</a></h3>
+                                            <p>Cotonou, Zogbohouè / Bénin</p>
+                                            <div class="list-footer">
+                                                <ul>
+                                                    <li>+229 97 14 50 32</li>
+                                                    <li><a href="https://wa.me/+22997145032"><img src="/assets/img/icon/whsp_a.png" width="16px"></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End one lokaton card -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- listing Details End -->
+                    <!--Pagination Start  -->
+                    <div class="pagination-area pt-70 text-center">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="single-wrap d-flex justify-content-center">
+                                        <a href="#" class="genric-btn primary circle e-large arrow">Primary<span class="lnr lnr-arrow-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Pagination End  -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- listing-area Area End -->
+{% endblock %}

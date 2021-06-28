@@ -1,0 +1,13 @@
+presta_sitemap:
+    defaults:
+        priority: 1
+        changefreq: weekly
+        lastmod: now
+    default_section: default
+    alternate:
+        enabled: true
+        default_locale: 'fr'
+        locales: [  'fr' ]
+        i18n: symfony
+    timetolive: 3600
+    items_by_set: 50000

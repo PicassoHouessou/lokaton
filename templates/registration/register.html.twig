@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block body %}
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <main class="main-content">
+        {% include "_preloader.html.twig" %}
+        {% if flow.getCurrentStepNumber() == 1 %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 mx-auto my-4">
+                        <div class="card card-signup">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <a href="/">
+                                        <img src="assets/img/logo/lokaton_icon_r.png" width="50px" class="logo" />
+                                    </a>
+                                    <h3 class="card-title">Créez votre compte</h3>
+                                    <p class="slogan">C'est rapide et gratuit !</p>
+                                </div>
+                                {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+                                {{ form_errors(registrationForm) }}
+                                {{ form_row(registrationForm.email) }}
+
+                                {{ form_row(registrationForm.plainPassword) }}
+                                {{ form_row(registrationForm.confirmPlainPassword) }}
+
+                                <small><a href="{{ absolute_url(path('app_login')) }}" class="text-dark">Vous avez déjà un compte ?</a></small>
+
+                                <div class="card-foter text-right mt-4">
+                                    {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
+                                        craue_formflow_button_class_last: 'btn btn-primary',
+                                        craue_formflow_button_class_next: 'btn btn-primary',
+                                        craue_formflow_button_label_next: 'Continuer',
+                                        craue_formflow_button_render_reset: false
+                                    } %}
+                                </div>
+
+                                {{ form_end(registrationForm) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% elseif flow.getCurrentStepNumber() == 2 %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 mx-auto my-4">
+                            <div class="card card-signup">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <a href="/">
+                                            <img src="assets/img/logo/lokaton_icon_r.png" width="50px" class="logo" />
+                                        </a>
+                                        <h3 class="card-title">Vous y êtes presque</h3>
+                                        <p class="slogan">{{"Aidez vos clients à vous connaître !"|trans}}</p>
+                                    </div>
+                                    {{ form_start(registrationForm,{'attr': {'novalidate': 'novalidate'}}) }}
+                                    {{ form_errors(registrationForm) }}
+                                    {{ form_row(registrationForm.username) }}
+                                    {{ form_row(registrationForm.phoneNumber) }}
+                                    <div class="card-foter text-right mt-4">
+                                        {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
+                                            craue_formflow_button_class_back: 'btn btn-danger',
+                                            craue_formflow_button_class_finish: 'btn btn-primary',
+                                            craue_formflow_button_render_reset: false,
+                                            craue_formflow_button_label_finish: "S'inscrire"
+                                        } %}
+                                    </div>
+                                    {{ form_end(registrationForm) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End preloader Start -->
+        {% endif %}
+
+        <!-- End preloader Start -->
+    </main>
+
+
+
+
+
+{% endblock %}
+{#
+
+{% block body %}
+
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <main class="main-content">
+        <!-- Preloader Start -->
+        <div id="preloader-active">
+            <div class="preloader d-flex align-items-center justify-content-center">
+                <div class="preloader-inner position-relative">
+                    <div class="preloader-circle"></div>
+                    <div class="preloader-img pere-text">
+                        <img src="assets/img/logo/lokaton_icon.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 mx-auto my-4">
+                    <div class="card card-signup">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <a href="/">
+                                    <img src="assets/img/logo/lokaton_icon_r.png" width="50px" class="logo" />
+                                </a>
+                                <h3 class="card-title">Créez votre compte</h3>
+                                <p class="slogan">C'est rapide et gratuit !</p>
+                            </div>
+                            <form class="" method="post" action="/register_step_2.php">
+                                <div class="md-form">
+                                    <label for="username">Adresse email</label>
+                                    <input type="email" id="email" class="form-control mb-3" placeholder="Votre adresse email">
+                                </div>
+
+                                <div class="md-form">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" id="password" class="form-control mb-3" placeholder="Entrez votre mot de passe">
+                                </div>
+
+                                <div class="md-form">
+                                    <label for="password2">Confirmez</label>
+                                    <input type="password" id="password2" class="form-control mb-3" placeholder="Confirmez votre mot de passe">
+                                </div>
+                                <small><a href="/login.php" class="text-dark">Vous avez déjà un compte ?</a></small>
+
+                                <div class="card-foter text-right mt-4">
+                                    <input type="submit" name="" value="Continuer">
+                                    <!-- <button type="button" class="btn" style="width: 100%;">Continuer</button> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End preloader Start -->
+    </main>
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+
+{% endblock %}
+ #}
