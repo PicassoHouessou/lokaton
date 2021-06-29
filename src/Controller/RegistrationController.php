@@ -24,16 +24,18 @@ use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 class RegistrationController extends AbstractController
 {
     private $emailVerifier;
+    private $noReplyEmail;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(EmailVerifier $emailVerifier, $noReplyEmail)
     {
         $this->emailVerifier = $emailVerifier;
+        $this->noReplyEmail = $noReplyEmail;
     }
 
     /**
      * @Route("/register", name="app_register", options={"sitemap" = true})
      */
-    public function register(UserPasswordHasherInterface $userPasswordHasher,  RegistrationFormFlow $flow, UserAuthenticator $authenticator): Response
+    public function register(UserPasswordHasherInterface $userPasswordHasher, RegistrationFormFlow $flow, UserAuthenticator $authenticator): Response
     {
         $user = new User();
         $flow->bind($user);
@@ -58,21 +60,13 @@ class RegistrationController extends AbstractController
                 $form = $flow->createForm();
 
             } else {
-                //$data = $flow->getRequest()->request->get('RegistrationFormType') ;
 
                 $passwordHash = $flow->getRequest()->getSession()->get('currentHash');
                 $flow->getRequest()->getSession()->remove('currentHash');
 
                 $user = $flow->getFormData();
-                /*
-                 * $user->setPassword(
-                    $userPasswordHasher->hashPassword(
-                        $user,
-                        $data['plainPassword']
-                    )
-                );*/
+
                 $user->setPassword($passwordHash);
-                dump($user);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
@@ -80,22 +74,15 @@ class RegistrationController extends AbstractController
                 $flow->reset(); // remove step data from the session
 
                 // generate a signed url and email it to the user
-                $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                $this->emailVerifier->sendEmailConfirmation(
+                    'app_verify_email',
+                    $user,
                     (new TemplatedEmail())
-                        ->from(new Address('no-reply@lokaton.com', 'No reply'))
+                        ->from(new Address($this->noReplyEmail, 'No reply'))
                         ->to($user->getEmail())
                         ->subject('Please Confirm your Email')
                         ->htmlTemplate('registration/confirmation_email.html.twig')
                 );
-                // do anything else you need here, like send an email
-/*
-                return $guardHandler->authenticateUserAndHandleSuccess(
-                    $user,
-                    $flow->getRequest(),
-                    $authenticator,
-                    'main' // firewall name in security.yaml
-                );
-                */
 
                 return $this->redirectToRoute("app_register_confirm");
             }
@@ -109,10 +96,11 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register/complete", name="app_register_confirm", methods={"get"})
      */
-    public function registrationComplete(){
+    public function registrationComplete()
+    {
 
         return $this->render('registration/complete.html.twig', [
-            "user"=>$this->getUser(),
+            "user" => $this->getUser(),
         ]);
     }
     /**
@@ -120,15 +108,17 @@ class RegistrationController extends AbstractController
      */
     public function resendEmail()
     {
-        $user =$this->getUser() ;
-        if ($user === null){
+        $user = $this->getUser();
+        if ($user === null) {
             $this->denyAccessUnlessGranted('ROLE_USER');
         }
 
 
-        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+        $this->emailVerifier->sendEmailConfirmation(
+            'app_verify_email',
+            $user,
             (new TemplatedEmail())
-                ->from(new Address('no-reply@dmvinvestmentgroup.com', 'No reply DMV'))
+                ->from(new Address($this->noReplyEmail, 'No reply DMV'))
                 ->to($user->getEmail())
                 ->subject('Please Confirm your Email')
                 ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -156,9 +146,11 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            $this->emailVerifier->sendEmailConfirmation(
+                'app_verify_email',
+                $user,
                 (new TemplatedEmail())
-                    ->from(new Address('no-reply@lokaton.com', 'No reply'))
+                    ->from(new Address($this->noReplyEmail, 'No reply'))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')

@@ -28,9 +28,12 @@ class ResetPasswordController extends AbstractController
 
     private $resetPasswordHelper;
 
-    public function __construct(ResetPasswordHelperInterface $resetPasswordHelper)
+    private $noReplyEmail;
+
+    public function __construct(ResetPasswordHelperInterface $resetPasswordHelper, $noReplyEmail)
     {
         $this->resetPasswordHelper = $resetPasswordHelper;
+        $this->noReplyEmail = $noReplyEmail;
     }
 
     /**
@@ -96,10 +99,13 @@ class ResetPasswordController extends AbstractController
         try {
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
-            $this->addFlash('reset_password_error', sprintf(
-                'There was a problem validating your reset request - %s',
-                $e->getReason()
-            ));
+            $this->addFlash(
+                'reset_password_error',
+                sprintf(
+                    'There was a problem validating your reset request - %s',
+                    $e->getReason()
+                )
+            );
 
             return $this->redirectToRoute('app_forgot_password_request');
         }
@@ -159,7 +165,7 @@ class ResetPasswordController extends AbstractController
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('no-reply@lokaton.com', 'No Rely'))
+            ->from(new Address($this->noReplyEmail, 'No Rely'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')
